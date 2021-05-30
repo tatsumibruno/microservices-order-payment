@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: payment
+  cloud:
+    stream:
+      bindings:
+        orders-created:
+          binder: kafka
+          group: payment
+        output:
+          destination: orders-changes
+      kafka:
+        binder:
+          brokers: localhost
+          defaultBrokerPort: 9092
+          autoCreateTopics: true
+        bindings:
+          orders-created:
+            group: payment
+            consumer:
+              autoCommitOffset: true
+              enableDlq: true
+          output:
+            destination: orders-changes
+            producer:
+              partitioned: true
+              partitionCount: 1
+              transacted: true
