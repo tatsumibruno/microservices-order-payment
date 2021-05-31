@@ -11,7 +11,7 @@ import java.time.ZonedDateTime;
 @Getter
 @ToString
 @NoArgsConstructor
-class NovoPedido {
+class CreatedOrder {
 
     private String code;
     @JsonFormat(pattern = Constants.ISO_DATE_TIME)

@@ -1,6 +1,6 @@
 package tatsumibruno.order.payment;
 
-public enum StatusPagamento {
+public enum PaymentStatus {
     PAYMENT_APPROVED,
     PAYMENT_DENIED
 }

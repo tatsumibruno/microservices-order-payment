@@ -9,13 +9,13 @@ import java.time.ZonedDateTime;
 
 @Getter
 @ToString
-public class StatusPagamentoPedido {
+public class OrderPaymentStatus {
     private final String code;
-    private final StatusPagamento status;
+    private final PaymentStatus status;
     @JsonFormat(pattern = Constants.ISO_DATE_TIME)
     private final ZonedDateTime timestamp;
 
-    public StatusPagamentoPedido(String code, StatusPagamento status, ZonedDateTime timestamp) {
+    public OrderPaymentStatus(String code, PaymentStatus status, ZonedDateTime timestamp) {
         this.code = code;
         this.status = status;
         this.timestamp = timestamp;
