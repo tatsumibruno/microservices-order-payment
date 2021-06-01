@@ -26,7 +26,7 @@ public class PaymentProcessing {
     private OrderPaymentStatus sendToGateway(CreatedOrder createdOrder) {
         try {
             //Simulação de "gargalo" na espera de um pagamento
-            Thread.sleep(BigDecimal.valueOf(Math.random() * 10).longValue() * 1000);
+            Thread.sleep(BigDecimal.valueOf(Math.random() * 10).longValue() * 3000);
         } catch (InterruptedException e) {
             log.error("Error while simulate the delay in payment gateway");
         }
