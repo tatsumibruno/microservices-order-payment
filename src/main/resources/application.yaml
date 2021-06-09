@@ -3,25 +3,53 @@ spring:
     name: payment
   cloud:
     stream:
+      binders:
+        rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                username: guest
+                password: guest
+                port: 5672
+                virtual-host: /
       bindings:
         orders-created:
-          binder: kafka
+          binder: rabbit
           group: payment
         orders-changes:
-          binder: kafka
-      kafka:
-        binder:
-          brokers: localhost
-          defaultBrokerPort: 9092
-          autoCreateTopics: true
+          binder: rabbit
+      rabbit:
         bindings:
           orders-created:
             group: payment
             consumer:
-              autoCommitOffset: true
-              enableDlq: true
+              autoBindDlq: true
+              durableSubscription: true
           orders-changes:
             producer:
-              partitioned: true
-              partitionCount: 1
               transacted: true
+#      bindings:
+#        orders-created:
+#          binder: kafka
+#          group: payment
+#          consumer:
+#            autoCommitOffset: true
+#            enableDlq: true
+#        orders-changes:
+#          binder: kafka
+#          producer:
+#            partition-count: 10
+#      kafka:
+#        binder:
+#          brokers: localhost
+#          defaultBrokerPort: 9092
+#          autoCreateTopics: true
+#          autoAddPartitions: true
+#        bindings:
+#          orders-created:
+#            group: payment
+#          orders-changes:
+#            producer:
+#              transacted: true
