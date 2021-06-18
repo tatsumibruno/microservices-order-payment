@@ -18,6 +18,8 @@ spring:
         orders-created:
           binder: rabbit
           group: payment
+          consumer:
+            concurrency: 5
         orders-changes:
           binder: rabbit
       rabbit:
@@ -27,6 +29,7 @@ spring:
             consumer:
               autoBindDlq: true
               durableSubscription: true
+              maxConcurrency: 5
           orders-changes:
             producer:
               transacted: true
