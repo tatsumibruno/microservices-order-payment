@@ -53,5 +53,3 @@ spring:
 #          orders-changes:
 #            producer:
 #              transacted: true
-server:
-  port: ${PORT:5000}
